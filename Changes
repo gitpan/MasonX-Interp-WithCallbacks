@@ -1,0 +1,26 @@
+Revision history for Perl extension MasonX::Interp::WithCallbacks.
+
+1.10  Mon Sep  8 21:15:42 2003
+      - Code moved over from MasonX::ApacheHandler::WithCallbacks, which is
+        deprecated. Differences from that class are as follows.
+      - Callback handling code from MasonX::ApacheHandler::WithCallbacks has
+        been migrated to Params::CallbackRequest.
+      - Code from MasonX::CallbackHandler has been migrated to
+        Params::Callback.
+      - MasonX::CallbackTester has been removed, since it isn't necessary
+        in a non-mod_perl environment.
+      - Params::CallbackRequest::Exceptions supplies the exceptions thrown by
+        Params::CallbackRequest, since that module is not strictly connected
+        to Mason.
+      - Changed the request_args() accessor from MasonX::CallbackHandler to
+        params() in Params::Callback, to reflect the idea that this is a
+        generic parameter-triggered callback architecture.
+      - Replaced the ah() accessor, since the callback controller isn't a
+        Mason ApacheHandler anymore, with cb_request() in Params::Callback.
+      - Added cb_request() accessor to MasonX::Interp::WithCallbacks.
+      - Replaced the "exec_null_cb_values" parameter from
+        MasonX::ApacheHandler::WithCallbaks, which had defaulted to true, with
+        "ignore_nulls" in Params::CallbackRequest, which defaults to false.
+      - Added Params::CallbackRequest notes() interface, which copies all
+        notes to the Mason request notes() interface before the request
+        executes.
