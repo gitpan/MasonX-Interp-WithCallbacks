@@ -8,7 +8,7 @@ use Params::CallbackRequest;
 
 use vars qw($VERSION @ISA);
 @ISA = qw(HTML::Mason::Interp);
-$VERSION = '1.12';
+$VERSION = '1.13';
 
 Params::Validate::validation_options
   ( on_fail => sub { HTML::Mason::Exception::Params->throw( join '', @_ ) } );
@@ -834,8 +834,7 @@ request, just as with C<< $r->pnotes >>.
 
 =head1 BUGS
 
-Please report all bugs via the CPAN Request Tracker at
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=MasonX-Interp-WithCallbacks>.
+Please send bug reports to <bug-masonx-interp-withcallbacks@rt.cpan.org>.
 
 =head1 SEE ALSO
 
@@ -861,7 +860,7 @@ David Wheeler <david@kineticode.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2003 by David Wheeler
+Copyright 2003-2004 by David Wheeler
 
 This library is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

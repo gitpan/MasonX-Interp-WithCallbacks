@@ -1,6 +1,6 @@
 #!perl -w
 
-# $Id: 10pod.t,v 1.2 2003/08/24 22:59:20 david Exp $
+# $Id: 10pod.t 682 2004-09-28 05:59:10Z theory $
 
 use Test::More;
 use FindBin qw($Bin);

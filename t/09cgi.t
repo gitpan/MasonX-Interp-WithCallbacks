@@ -1,6 +1,6 @@
 #!perl -w
 
-# $Id: 09cgi.t,v 1.6 2003/10/08 18:32:06 david Exp $
+# $Id: 09cgi.t 682 2004-09-28 05:59:10Z theory $
 
 use strict;
 use FindBin qw($Bin);

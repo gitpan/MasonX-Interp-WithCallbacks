@@ -79,7 +79,7 @@ sub cbr_note : Callback {
 
 package TestCallbacks;
 
-# $Id: TestCallbacks.pm,v 1.2 2003/09/07 18:08:01 david Exp $
+# $Id: TestCallbacks.pm 682 2004-09-28 05:59:10Z theory $
 
 use strict;
 use HTML::Mason::ApacheHandler;
