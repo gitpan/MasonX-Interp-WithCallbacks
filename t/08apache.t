@@ -1,6 +1,6 @@
 #!perl -w
 
-# $Id: 08apache.t,v 1.4 2003/09/07 18:08:00 david Exp $
+# $Id: 08apache.t,v 1.6 2003/10/08 20:11:58 david Exp $
 
 use strict;
 use Test::More;
@@ -9,8 +9,8 @@ BEGIN {
     plan skip_all => 'Testing of apache_req requires Apache::Test'
       unless eval {require Apache::Test};
 
-    plan skip_all => 'Test of apache_req requires libwww-perl'
-      unless Apache::Test::have_lwp();
+    plan skip_all => 'Test of apache_req requires mod_perl'
+      unless Apache::Test::have_module('mod_perl.c');
 
     require Apache::TestRequest;
     Apache::TestRequest->import(qw(GET POST));
@@ -128,9 +128,9 @@ while (my $key = shift @keys) {
 
     # Make sure that notes percolate back to Mason.
     ok( $res = POST($uri,
-                    [ "$key|add_note_cb"   => $note_key,
+                    [ "$key|add_note_cb1"  => $note_key,
                       note                 => $note,
-                      "$key|mason_note_cb" => 1,
+                      "$key|mason_note_cb" => $note_key,
                     ]),
         "Get mason note response" );
     is( $res->code, 200, "Check mason note code" );
@@ -141,7 +141,7 @@ while (my $key = shift @keys) {
     ok( $res = POST($uri,
                     [ "$key|add_note_cb"   => $note_key,
                       note                 => $note,
-                      "$key|cbr_note_cb" => 1,
+                      "$key|cbr_note_cb"   => $note_key,
                     ]),
         "Get cb_request note respone" );
     is( $res->code, 200, "Check cb_request note code" );
@@ -162,7 +162,7 @@ while (my $key = shift @keys) {
                     [ "$key|add_note_cb1"  => $note_key, # Executes first.
                       note                 => $note,
                       "$key|clear_cb"      => 1,
-                      "$key|cbr_note_cb" => 1,
+                      "$key|cbr_note_cb"   => $note_key,
                     ]),
         "Get cb_request cleared note response" );
     is( $res->code, 200, "Check cb_request cleared note code" );

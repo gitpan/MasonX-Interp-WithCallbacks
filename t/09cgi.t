@@ -1,11 +1,11 @@
 #!perl -w
 
-# $Id: 09cgi.t,v 1.3 2003/08/24 22:59:20 david Exp $
+# $Id: 09cgi.t,v 1.6 2003/10/08 18:32:06 david Exp $
 
 use strict;
 use FindBin qw($Bin);
 use File::Spec::Functions qw(catdir);
-use Test::More tests => 24;
+use Test::More tests => 27;
 use CGI qw(-no_debug);
 use HTML::Mason::CGIHandler;
 
@@ -149,8 +149,9 @@ clear_bufs;
 $ENV{QUERY_STRING} = "$key|redir_cb=0";
 ok( $cgih->handle_request, "Handle redirection request" );
 is( $outbuf, '', "Check redirection result" );
-like( $stdout->read, qr/Status: 302 Moved\s+Location: $url/,
-    "Check redirection header" );
+ok( my $out = $stdout->read, "Get contents of STDOUT" );
+like( $out, qr/Status: 302 Moved/, "Check Status header" );
+like( $out, qr/Location: $url/, "Check Location header" );
 clear_bufs;
 
 ##############################################################################
@@ -159,8 +160,8 @@ $ENV{QUERY_STRING} = "$key|redir_cb0=1" .
   "&$key|add_header_cb9=1";
 ok( $cgih->handle_request, "Handle redirect w/o abort" );
 ok( my $res = $stdout->read, "Get response headers" );
-like( $res, qr/Status: 302 Moved\s+Location: $url/,
-    "Check for redirection header" );
+like( $res, qr/Status: 302 Moved/, "Check for Status header" );
+like( $res, qr/Location: $url/, "Check for Location header" );
 like( $res, qr/Age: 42/, "Check for age header" );
 clear_bufs;
 
