@@ -1,6 +1,6 @@
 #!perl -w
 
-# $Id: 09cgi.t 2865 2006-05-26 22:35:27Z theory $
+# $Id: 09cgi.t 3730 2008-05-03 23:17:25Z david $
 
 use strict;
 use FindBin qw($Bin);
@@ -150,8 +150,8 @@ $ENV{QUERY_STRING} = "$key|redir_cb=0";
 ok( $cgih->handle_request, "Handle redirection request" );
 is( $outbuf, '', "Check redirection result" );
 ok( my $out = $stdout->read, "Get contents of STDOUT" );
-like( $out, qr/Status: 302 (?:Moved|Found)/, "Check Status header" );
-like( $out, qr/Location: $url/, "Check Location header" );
+like( $out, qr/^Status: 302 (?:Moved|Found)/m, "Check Status header" );
+like( $out, qr/^(?:Moved\s+)?Location: $url/mi, "Check Location header" );
 clear_bufs;
 
 ##############################################################################
@@ -160,9 +160,9 @@ $ENV{QUERY_STRING} = "$key|redir_cb0=1" .
   "&$key|add_header_cb9=1";
 ok( $cgih->handle_request, "Handle redirect w/o abort" );
 ok( my $res = $stdout->read, "Get response headers" );
-like( $res, qr/Status: 302 (?:Moved|Found)/, "Check for Status header" );
-like( $res, qr/Location: $url/, "Check for Location header" );
-like( $res, qr/Age: 42/, "Check for age header" );
+like( $res, qr/^Status: 302 (?:Moved|Found)/m, "Check for Status header" );
+like( $res, qr/^(?:Moved\s+)?Location: $url/mi, "Check for Location header" );
+like( $res, qr/^Age: 42/mi, "Check for age header" );
 clear_bufs;
 
 
