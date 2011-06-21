@@ -1,7 +1,5 @@
 #!perl -w
 
-# $Id: 10pod.t 3504 2008-03-10 18:54:16Z theory $
-
 use strict;
 use Test::More;
 eval "use Test::Pod 1.20";

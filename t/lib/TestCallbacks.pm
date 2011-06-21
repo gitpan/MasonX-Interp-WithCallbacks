@@ -79,8 +79,6 @@ sub cbr_note : Callback {
 
 package TestCallbacks;
 
-# $Id: TestCallbacks.pm 3722 2008-05-03 02:25:47Z david $
-
 use strict;
 use HTML::Mason::ApacheHandler;
 use HTML::Mason::Exceptions;

@@ -1,7 +1,5 @@
 #!perl -w
 
-# $Id: 05object.t 2866 2006-05-26 22:54:37Z theory $
-
 use strict;
 use FindBin qw($Bin);
 use File::Spec::Functions qw(catdir catfile);

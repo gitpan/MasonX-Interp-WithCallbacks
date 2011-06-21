@@ -1,7 +1,5 @@
 #!perl -w
 
-# $Id: 08apache.t 3722 2008-05-03 02:25:47Z david $
-
 use strict;
 use Test::More;
 
